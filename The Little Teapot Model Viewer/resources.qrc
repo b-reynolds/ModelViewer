@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/icons/teapot.ico</file>
+        <file>images/icons/open.ico</file>
+        <file>images/icons/quit.ico</file>
+        <file>images/icons/bucket.ico</file>
+        <file>images/icons/paint-brush.ico</file>
+        <file>images/icons/question.ico</file>
+        <file>images/teapot.png</file>
+        <file>images/icons/1.ico</file>
+        <file>images/icons/2.ico</file>
+        <file>images/icons/3.ico</file>
+        <file>images/icons/4.ico</file>
+        <file>images/icons/5.ico</file>
+    </qresource>
+    <qresource prefix="/objs">
+        <file>objs/teapot.obj</file>
+    </qresource>
+</RCC>
