@@ -129,8 +129,7 @@ void ModelViewer::initializeGL()
  */
 void ModelViewer::paintGL()
 {
-    glClearColor(static_cast<float>(mBackgroundColour.red()) / 255.0f, static_cast<float>(mBackgroundColour.green()) / 255.0f,
-                 static_cast<float>(mBackgroundColour.blue()) / 255.0f, static_cast<float>(mBackgroundColour.alpha()) / 255.0f);
+    glClearColor(mBackgroundColour.red() / 255.0f, BackgroundColour.green(), mBackgroundColour.blue() / 255.0f, mBackgroundColour.alpha();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_PROJECTION);
@@ -138,13 +137,13 @@ void ModelViewer::paintGL()
 
     glOrtho(-mZoomAmount, mZoomAmount, -mZoomAmount, mZoomAmount, cNear, cFar);
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
     if(!mModel.isLoaded())
     {
         return;
     }
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     glTranslated(mModel.position().x(), mModel.position().y(), mModel.position().z());
 
@@ -153,15 +152,12 @@ void ModelViewer::paintGL()
     glRotated(mModel.rotation().z(), 0.0f, 0.0f, 1.0f);
 
     glPointSize(mPointSize);
-    glColor3f(static_cast<float>(mForegroundColour.red()) / 255.0f, static_cast<float>(mForegroundColour.green()) / 255.0f,
-              static_cast<float>(mForegroundColour.blue()) / 255.0f);
+    glColor3f(mForegroundColour.red() / 255.0f, mForegroundColour.green() / 255.0f, mForegroundColour.blue() / 255.0f);
 
     const QVector<QVector3D>& cVertices = mModel.vertices();
     glBegin(mRenderMode == ePointCloud ? GL_POINTS : GL_LINES);
         for(int i = 0; i < cVertices.size(); ++i)
-        {
             glVertex3f(cVertices[i].x(), cVertices[i].y(), cVertices[i].z());
-        }
     glEnd();
 }
 
