@@ -45,12 +45,14 @@ void FrmMain::on_actnOpenFile_triggered()
         showMessageBox("Error: Failed to open/process file", cWindowTitle, QMessageBox::Critical);
         return;
     }
+    
+    
+    ui->modelViewer->setModel(model);    
+    ui->modelViewer2->setModel(model);
 
-
-    ui->modelViewer->setModel(model);
 
     qDebug() << "Info: Model loaded successfully";
-}
+
 
     ui->dsbPositionX->setValue(model.position().x());
     ui->dsbPositionY->setValue(model.position().y());
@@ -85,6 +87,7 @@ void FrmMain::on_actnBackgroundColour_triggered()
     }
 
     ui->modelViewer->setBackgroundColour(colour);
+    ui->modelViewer2->setBackgroundColour(colour);
 }
 
 /**
@@ -101,6 +104,7 @@ void FrmMain::on_actnForegroundColour_triggered()
     }
 
     ui->modelViewer->setForegroundColour(colour);
+    ui->modelViewer2->setBackgroundColour(colour);
 }
 
 /**
@@ -152,7 +156,12 @@ void FrmMain::initialize()
     model.loadFromFile(":/objs/objs/teapot.obj");
     model.setPosition(position);
     ui->modelViewer->setModel(model);
+    ui->modelViewer2->setModel(model);
+
     ui->modelViewer->setZoomAmount(zoomAmount);
+    ui->modelViewer2->setZoomAmount(zoomAmount);
+    ui->modelViewer2->setAlternativeView(true);
+
     ui->dsbZoom->setValue(zoomAmount);
     ui->dsbPositionY->setValue(position.y());
     ui->dsbPositionX->setValue(position.x());
@@ -167,6 +176,8 @@ void FrmMain::initialize()
 void FrmMain::on_dsbPositionX_valueChanged(double value)
 {
     Model& model = ui->modelViewer->model();
+    Model& model2 = ui->modelViewer2->model();
+
 
     if(!model.isLoaded())
     {
@@ -174,8 +185,10 @@ void FrmMain::on_dsbPositionX_valueChanged(double value)
     }
 
     model.setPosition(QVector3D(value, model.position().y(), model.position().z()));
+    model2.setPosition(QVector3D(value, model2.position().y(), model2.position().z()));
 
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -185,6 +198,7 @@ void FrmMain::on_dsbPositionX_valueChanged(double value)
 void FrmMain::on_dsbPositionY_valueChanged(double value)
 {
     Model& model = ui->modelViewer->model();
+    Model& model2 = ui->modelViewer2->model();
 
     if(!model.isLoaded())
     {
@@ -192,8 +206,10 @@ void FrmMain::on_dsbPositionY_valueChanged(double value)
     }
 
     model.setPosition(QVector3D(model.position().x(), value, model.position().z()));
+    model2.setPosition(QVector3D(model2.position().x(), value, model2.position().z()));
 
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -203,6 +219,7 @@ void FrmMain::on_dsbPositionY_valueChanged(double value)
 void FrmMain::on_dsbRotationX_valueChanged(double value)
 {
     Model& model = ui->modelViewer->model();
+    Model& model2 = ui->modelViewer2->model();
 
     if(!model.isLoaded())
     {
@@ -210,8 +227,10 @@ void FrmMain::on_dsbRotationX_valueChanged(double value)
     }
 
     model.setRotation(QVector3D(value, model.rotation().y(), model.rotation().z()));
+    model2.setRotation(QVector3D(value, model2.rotation().y(), model2.rotation().z()));
 
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 
@@ -222,6 +241,7 @@ void FrmMain::on_dsbRotationX_valueChanged(double value)
 void FrmMain::on_dsbRotationY_valueChanged(double value)
 {
     Model& model = ui->modelViewer->model();
+    Model& model2 = ui->modelViewer2->model();
 
     if(!model.isLoaded())
     {
@@ -229,8 +249,10 @@ void FrmMain::on_dsbRotationY_valueChanged(double value)
     }
 
     model.setRotation(QVector3D(model.rotation().x(), value, model.rotation().z()));
+    model2.setRotation(QVector3D(model2.rotation().x(), value, model2.rotation().z()));
 
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -240,6 +262,7 @@ void FrmMain::on_dsbRotationY_valueChanged(double value)
 void FrmMain::on_dsbRotationZ_valueChanged(double value)
 {
     Model& model = ui->modelViewer->model();
+    Model& model2 = ui->modelViewer2->model();
 
     if(!model.isLoaded())
     {
@@ -247,8 +270,10 @@ void FrmMain::on_dsbRotationZ_valueChanged(double value)
     }
 
     model.setRotation(QVector3D(model.rotation().x(), model.rotation().y(), value));
+    model2.setRotation(QVector3D(model2.rotation().x(), model2.rotation().y(), value));
 
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -258,7 +283,9 @@ void FrmMain::on_dsbRotationZ_valueChanged(double value)
 void FrmMain::on_dsbZoom_valueChanged(double value)
 {
     ui->modelViewer->setZoomAmount(value);
+    ui->modelViewer2->setZoomAmount(value);
     ui->modelViewer->update();
+    ui->modelViewer2->update();
 }
 
 /**
@@ -273,7 +300,10 @@ void FrmMain::on_rdbPointCloud_toggled(bool state)
     }
 
     ui->modelViewer->setRenderMode(ui->modelViewer->ePointCloud);
+    ui->modelViewer2->setRenderMode(ui->modelViewer2->ePointCloud);
+
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -288,7 +318,10 @@ void FrmMain::on_rdbWireframe_toggled(bool state)
     }
 
     ui->modelViewer->setRenderMode(ui->modelViewer->eWireframe);
+    ui->modelViewer2->setRenderMode(ui->modelViewer2->eWireframe);
+
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -299,7 +332,9 @@ void FrmMain::on_actPointSize1_triggered()
     disableActionChecks();
     ui->actPointSize1->setChecked(true);
     ui->modelViewer->setPointSize(1.0f);
+    ui->modelViewer2->setPointSize(1.0f);
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -310,7 +345,9 @@ void FrmMain::on_actPointSize2_triggered()
     disableActionChecks();
     ui->actPointSize2->setChecked(true);
     ui->modelViewer->setPointSize(2.0f);
+    ui->modelViewer2->setPointSize(2.0f);
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -321,7 +358,9 @@ void FrmMain::on_actPointSize3_triggered()
     disableActionChecks();
     ui->actPointSize3->setChecked(true);
     ui->modelViewer->setPointSize(3.0f);
+    ui->modelViewer2->setPointSize(3.0f);
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -332,7 +371,9 @@ void FrmMain::on_actPointSize4_triggered()
     disableActionChecks();
     ui->actPointSize4->setChecked(true);
     ui->modelViewer->setPointSize(4.0f);
+    ui->modelViewer2->setPointSize(4.0f);
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }
 
 /**
@@ -342,5 +383,7 @@ void FrmMain::on_actPointSize5_triggered()
 {
     ui->actPointSize5->setChecked(true);
     ui->modelViewer->setPointSize(5.0f);
+    ui->modelViewer2->setPointSize(5.0f);
     ui->modelViewer->updateGL();
+    ui->modelViewer2->updateGL();
 }

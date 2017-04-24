@@ -11,6 +11,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LittleTeapot
 TEMPLATE = app
 LIBS += opengl32.lib
+LIBS += $$PWD/lib/glew32.lib
+LIBS += $$PWD/lib/freeglut.lib
+INCLUDEPATH += $$PWD/include/
 RC_FILE = thelittleteapot.rc
 
 # The following define makes your compiler emit warnings if you use

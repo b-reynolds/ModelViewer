@@ -1,6 +1,6 @@
 #ifndef MODEL_VIEWER_H
 #define MODEL_VIEWER_H
-
+#include "glut.h"
 #include "model.h"
 #include <QGLWidget>
 #include <QColor>
@@ -57,6 +57,9 @@ public:
     /* Returns the ModelViewer's render mode */
     RenderMode renderMode();
 
+    /* Set the alternative view */
+    void setAlternativeView(const bool& state);
+
 protected:
 
     /* Initialises OpenGL (called once, before the first ModelViewer::paintGL call) */
@@ -108,6 +111,9 @@ private:
 
     /* Current render mode */
     RenderMode mRenderMode;
+
+    /* Alternate view */
+    bool mAlternativeView;
 
 };
 

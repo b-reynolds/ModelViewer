@@ -14,6 +14,7 @@ ModelViewer::ModelViewer(QWidget *parent) : QGLWidget(QGLFormat(QGL::SampleBuffe
     setPointSize(cPointSizeDefault);
     setZoomAmount(cZoomAmountDefault);
     setRenderMode(cRenderModeDefault);
+    mAlternativeView = false;
 }
 
 /**
@@ -117,11 +118,21 @@ ModelViewer::RenderMode ModelViewer::renderMode()
 }
 
 /**
+ * @brief Set the ModelViewer's alternative view
+ * @param state new state
+ */
+void ModelViewer::setAlternativeView(const bool &state)
+{
+    mAlternativeView = state;
+}
+
+/**
  * @brief Initialises OpenGL (called once, before the first ModelViewer::paintGL call)
  */
 void ModelViewer::initializeGL()
 {
     glEnable(GL_DEPTH_CLAMP);
+    //glewInit();
 }
 
 /**
@@ -129,11 +140,16 @@ void ModelViewer::initializeGL()
  */
 void ModelViewer::paintGL()
 {
-    glClearColor(mBackgroundColour.red() / 255.0f, BackgroundColour.green(), mBackgroundColour.blue() / 255.0f, mBackgroundColour.alpha();
+    glClearColor(mBackgroundColour.red() / 255.0f, mBackgroundColour.green() / 255.0f, mBackgroundColour.blue() / 255.0f, mBackgroundColour.alpha() / 255.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+
+    if(mAlternativeView)
+    {
+        gluLookAt(90, 0, 0, 0, 0, -1, 0, 5, 0);
+    }
 
     glOrtho(-mZoomAmount, mZoomAmount, -mZoomAmount, mZoomAmount, cNear, cFar);
 
