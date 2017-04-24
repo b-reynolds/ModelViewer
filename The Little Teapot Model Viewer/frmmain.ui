@@ -20,7 +20,7 @@
    <string>Little Teapot</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/images/images/icons/teapot.ico</normaloff>:/images/images/icons/teapot.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -807,7 +807,7 @@ QMenu::separator {
   </widget>
   <action name="actnOpenFile">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/open.ico</normaloff>:/images/images/icons/open.ico</iconset>
    </property>
    <property name="text">
@@ -819,7 +819,7 @@ QMenu::separator {
   </action>
   <action name="actnExit">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/quit.ico</normaloff>:/images/images/icons/quit.ico</iconset>
    </property>
    <property name="text">
@@ -831,7 +831,7 @@ QMenu::separator {
   </action>
   <action name="actnBackgroundColour">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/bucket.ico</normaloff>:/images/images/icons/bucket.ico</iconset>
    </property>
    <property name="text">
@@ -843,7 +843,7 @@ QMenu::separator {
   </action>
   <action name="actnForegroundColour">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/paint-brush.ico</normaloff>:/images/images/icons/paint-brush.ico</iconset>
    </property>
    <property name="text">
@@ -855,7 +855,7 @@ QMenu::separator {
   </action>
   <action name="actnAbout">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/question.ico</normaloff>:/images/images/icons/question.ico</iconset>
    </property>
    <property name="text">
@@ -867,7 +867,7 @@ QMenu::separator {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/1.ico</normaloff>:/images/images/icons/1.ico</iconset>
    </property>
    <property name="text">
@@ -879,7 +879,7 @@ QMenu::separator {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/2.ico</normaloff>:/images/images/icons/2.ico</iconset>
    </property>
    <property name="text">
@@ -891,7 +891,7 @@ QMenu::separator {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/3.ico</normaloff>:/images/images/icons/3.ico</iconset>
    </property>
    <property name="text">
@@ -903,7 +903,7 @@ QMenu::separator {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/4.ico</normaloff>:/images/images/icons/4.ico</iconset>
    </property>
    <property name="text">
@@ -915,7 +915,7 @@ QMenu::separator {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/images/icons/5.ico</normaloff>:/images/images/icons/5.ico</iconset>
    </property>
    <property name="text">

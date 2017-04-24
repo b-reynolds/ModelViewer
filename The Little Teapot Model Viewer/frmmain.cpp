@@ -46,9 +46,11 @@ void FrmMain::on_actnOpenFile_triggered()
         return;
     }
 
-    qDebug() << "Info: Model loaded successfully";
 
     ui->modelViewer->setModel(model);
+
+    qDebug() << "Info: Model loaded successfully";
+}
 
     ui->dsbPositionX->setValue(model.position().x());
     ui->dsbPositionY->setValue(model.position().y());
