@@ -1,0 +1,1 @@
+The source/project files for the Little Teapot Model Viewer are NOT openable using Visual Studio, however, they can be viewed using the free to download Qt Creator IDE.
