@@ -246,20 +246,6 @@ bool initializeShaders()
 
 void paint()
 {
-
-	/* Adjust the colours of the shader */
-	for(int i = 0; i < 9; i += 3)
-	{
-		colourData[i] += toggleData[i] ? 0.01f : -0.01f;
-		if ((toggleData[i] && colourData[i] >= 1.0f) || (!toggleData[i] && colourData[i] <= 0.0f))
-		{
-			toggleData[i] = !toggleData[i];
-		}
-	}
-
-	/* Reinitialize the shaders */
-	initializeShaders();
-
 	/* Clear the colour and depth buffers */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -272,7 +258,7 @@ void paint()
 	// Increment the shaders rotation
 	GLint rotationUniform = glGetUniformLocation(shaderProgramID, "angle");
 	glUniform1f(rotationUniform, currentRotation);
-	currentRotation += 0.001f;
+	currentRotation += 0.0001f;
 	
 	// Draw the triangle
 	glBindVertexArray(vaoHandle);
