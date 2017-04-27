@@ -258,7 +258,7 @@ void paint()
 	// Increment the shaders rotation
 	GLint rotationUniform = glGetUniformLocation(shaderProgramID, "angle");
 	glUniform1f(rotationUniform, currentRotation);
-	currentRotation += 0.0001f;
+	currentRotation += 0.005f;
 	
 	// Draw the triangle
 	glBindVertexArray(vaoHandle);
